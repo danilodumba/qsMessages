@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\qs.Messages.Domain\qs.Messages.Domain.csproj" />
+    <ProjectReference Include="..\qs.Messages.Mail\qs.Messages.Mail.csproj" />
+    <ProjectReference Include="..\qs.Messages.Infra.Mongo\qs.Messages.Infra.Mongo.csproj" />
+  </ItemGroup>
+
+</Project>
