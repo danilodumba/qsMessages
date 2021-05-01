@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Driver;
 using qs.Messages.Domains.Entities;
 using qs.Messages.Domains.Repositories;
 using qs.Messages.Infra.Mongo.Core;
@@ -15,7 +16,8 @@ namespace qs.Messages.Infra.Mongo.Repositories
 
         public IEnumerable<Template> ListByDescription(string description)
         {
-            throw new NotImplementedException();
+            var all = _dbSet.Find(Builders<Template>.Filter.Empty);
+            return all.ToList();
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using qs.Messages.ApplicationServices.Models;
 using qs.Messages.ApplicationServices.Services.Interfaces;
@@ -84,7 +85,17 @@ namespace qs.Messages.ApplicationServices.Services
 
         public IList<TemplateModel> Search(Guid? projectID, string id, string description)
         {
-            throw new NotImplementedException();
+            var templates = _templateRepository.ListByDescription("");
+
+            var model = templates.Select(t => new TemplateModel{
+                Id = t.Id,
+                Description = t.Description,
+                MailFrom = t.MailFrom,
+                MailTemplate = t.MailTemplate,
+                Subject = t.Subject
+            });
+
+            return model.ToList();
         }
 
         public void Update(TemplateModel model)

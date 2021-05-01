@@ -1,5 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using qs.Messages.Pack.Services;
+using qs.Messages.Pack.Services.Interfaces;
 using Rebus.Config;
 using Rebus.ServiceProvider;
 
@@ -18,6 +20,7 @@ namespace qs.Messages.Pack
             );
 
             services.Configure<MessageSettings>(configuration.GetSection("MessageSettings"));
+            services.AddScoped<ISendMailService, SendMailService>();
          }
     }
 }

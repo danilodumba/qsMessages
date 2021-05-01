@@ -6,7 +6,12 @@
   <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.14" />
 </ItemGroup>
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+   <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>qsMessages</PackageId>
+    <Version>3.0.0</Version>
+    <Authors>Danilo Dumbá</Authors>
+    <Company>DDSTECH</Company>
+    <PackageDescription>Pacote para envio de mensagens via qs.messages</PackageDescription>
+    <RepositoryUrl>https://github.com/danilodumba/qsMessages</RepositoryUrl>
   </PropertyGroup>
-
 </Project>

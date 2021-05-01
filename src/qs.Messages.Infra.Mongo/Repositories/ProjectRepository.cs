@@ -22,7 +22,8 @@ namespace qs.Messages.Infra.Mongo.Repositories
 
         public IEnumerable<Project> ListByName(string name)
         {
-            throw new NotImplementedException();
+            var all = _dbSet.Find(Builders<Project>.Filter.Empty);
+            return all.ToList();
         }
     }
 }
