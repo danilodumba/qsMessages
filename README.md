@@ -1,4 +1,4 @@
-# O que é o qs.messages
+# O que é o qs.messages?
 É um Sistema para gerenciamento de envio de mensagens, seja via e-mail ou SMS. 
 
 O projeto tem como objetivo mostrar como crio um projeto para acesso ao MongoDB com RabbitMQ e tambem funcionar como API de mensageria dos meus projetos.
@@ -20,7 +20,6 @@ Configure suas conexões no appSettings.json:
     "ConnectionString": "mongodb://localhost:27017",
     "Database": "messageDB"
   },
-}
 ``` 
 
 ### RabbitMQ
@@ -30,7 +29,6 @@ Configure suas conexões no appSettings.json:
     "RabbitConnection": "amqp://guest:guest@localhost",
     "Queue": "message"
   }
-},
 ``` 
 
 ### Email de saida
@@ -42,10 +40,10 @@ Configure suas conexões no appSettings.json:
     "User": "seuemail@seudominio.com",
     "Password": "suaSenha"
   },
-}
+
 ``` 
 
-# Conectando seus projetos ao envio. 
+# Conectando seus projetos para envio com qs.message. 
 
 Inclua o pacote
 ```
@@ -53,6 +51,7 @@ dotnet add package qsMessage
 ```
 
 >**Note:** Os e-mails somente serão enviados com os projetos e templates previamente cadastrados no qs.messages.
+
 
 Inclua a conexão do RabbitMQ e o API Key do projeto criado no qs.message no seu appSettings.json.
 
@@ -63,8 +62,8 @@ Inclua a conexão do RabbitMQ e o API Key do projeto criado no qs.message no seu
     "ProjectApiKey": "07972cd8-f879-4cfe-b900-d8d753522e05"
   }
 ``` 
->**Note:** ApiKey é cadastrado automaticamente quando se cadastra um projeto no qs.messages
->**Note:** Lembre - se que a fila e a mesma informada no qs.messages
+>**Note:** ApiKey é cadastrado automaticamente quando se cadastra um projeto no qs.messages. 
+>Lembre - se que a fila e a mesma informada no qs.messages
 
 Adicione o projeto no Startup.cs
 
@@ -81,7 +80,7 @@ Adicione o projeto no Startup.cs
 ```
 |Campo|Valor|
 |--|--|
-|to  | E-mail para que deseja enviar. |
+|to  | E-mail para quem deseja enviar. |
 |templateID| Identificador do template que criou no qs.message  |
 |values| Lista de parametros KeyValue para no caso o template precisar substituir valores ex: [Nome] por Danilo  |
 
