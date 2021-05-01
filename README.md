@@ -1,12 +1,10 @@
 # O que é o qs.messages
-=====================
 É um Sistema para gerenciamento de envio de mensagens, seja via e-mail ou SMS. 
 
 O projeto tem como objetivo mostrar como crio um projeto para acesso ao MongoDB com RabbitMQ e tambem funcionar como API de mensageria dos meus projetos.
 
 
-## Iniciando com o projeto.
-=====================
+## Iniciando com o projeto
 
 O projeto está na versão .NET 5.0.
 
@@ -46,7 +44,7 @@ Configure suas conexões no appSettings.json:
   },
 }
 ``` 
-=====================
+
 # Conectando seus projetos ao envio. 
 
 Inclua o pacote
@@ -65,7 +63,7 @@ Inclua a conexão do RabbitMQ e o API Key do projeto criado no qs.message no seu
     "ProjectApiKey": "07972cd8-f879-4cfe-b900-d8d753522e05"
   }
 ``` 
->**Note:** ApiKey e cadastrado automaticamente quando se cadastra um projeto no qs.messages
+>**Note:** ApiKey é cadastrado automaticamente quando se cadastra um projeto no qs.messages
 >**Note:** Lembre - se que a fila e a mesma informada no qs.messages
 
 Adicione o projeto no Startup.cs
