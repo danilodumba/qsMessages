@@ -8,12 +8,9 @@ namespace qs.Messages.ApplicationServices.Command
     public class SendMailCommand : Command<Guid>
     {
         public string To { get; set; }
-        public string From { get; set; }
-        public string Body { get; set; }
-        public string Subject { get; set; }
         public Guid ProjectApiKey { get; set; }
         public string TemplateID { get; set; }
-        public List<KeyValueCommand> KeyValues { get; set; } = new List<KeyValueCommand>();
+        public List<KeyValuePair<string, string>> KeyValues { get; set; } = new List<KeyValuePair<string, string>>();
 
         public override bool IsValid()
         {
@@ -22,11 +19,5 @@ namespace qs.Messages.ApplicationServices.Command
 
             return this.Errors.Count == 0;
         }
-    }
-
-    public class KeyValueCommand
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
     }
 }

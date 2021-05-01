@@ -12,6 +12,7 @@
     <ProjectReference Include="..\qs.Messages.Domain\qs.Messages.Domain.csproj" />
     <ProjectReference Include="..\qs.Messages.Mail\qs.Messages.Mail.csproj" />
     <ProjectReference Include="..\qs.Messages.Infra.Mongo\qs.Messages.Infra.Mongo.csproj" />
+    <ProjectReference Include="..\qs.Messages.Pack\qs.Messages.Pack.csproj" />
   </ItemGroup>
 
 </Project>

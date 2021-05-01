@@ -17,21 +17,25 @@ namespace qs.Messages.UnitTest.Domains
 
         [Theory]
         [MemberData(nameof(GetTemplates))]
-        public void Deve_Validar_Template(string id, string mailTemplate, Project project)
+        public void Deve_Validar_Template(string id, string mailTemplate, Project project, string mailFrom, string subject)
         {
             Assert.Throws<DomainException>(() => new Template(
                 id, 
                 "Teste",
                 mailTemplate,
-                project
+                project,
+                subject,
+                mailFrom
             ));
         }
 
         public static IEnumerable<object[]> GetTemplates()
         {
-            yield return new object[] { "", "Teste de Mail Template", ProjectMock.GetProject() };
-            yield return new object[] { "TEMPLATE_ID", "", ProjectMock.GetProject() };
-            yield return new object[] { "TEMPLATE_ID", "Teste de Mail Template", null };
+            yield return new object[] { "", "Teste de Mail Template", ProjectMock.GetProject(), "teste@teste.com.br", "assunto" };
+            yield return new object[] { "TEMPLATE_ID", "", ProjectMock.GetProject(), "teste@teste.com.br", "assunto" };
+            yield return new object[] { "TEMPLATE_ID", "Teste de Mail Template", null, "teste@teste.com.br", "assunto" };
+            yield return new object[] { "TEMPLATE_ID", "Teste de Mail Template", ProjectMock.GetProject(), "", "assunto" };
+            yield return new object[] { "TEMPLATE_ID", "Teste de Mail Template", ProjectMock.GetProject(), "teste@teste.com.br", "" };
         }
     }
 }

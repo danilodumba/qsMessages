@@ -12,7 +12,9 @@ namespace qs.Messages.IntegrationTest.Controllers.Mocks
             .RuleFor(m => m.Description, f => f.Lorem.Text())
             .RuleFor(m => m.Id, f => f.Person.UserName)
             .RuleFor(m => m.MailTemplate, f => f.Lorem.Sentences(20))
-            .RuleFor(m => m.ProjectID, Guid.NewGuid());
+            .RuleFor(m => m.ProjectID, Guid.NewGuid())
+            .RuleFor(m => m.MailFrom, f => f.Person.Email)
+            .RuleFor(m => m.Subject, f => f.Random.String2(20));
         
             return mock.Generate();
         }

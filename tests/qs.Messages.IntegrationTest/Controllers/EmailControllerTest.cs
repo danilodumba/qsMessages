@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using qs.Messages.ApplicationServices.Command;
 using qs.Messages.ApplicationServices.Models;
@@ -17,38 +18,17 @@ namespace qs.Messages.IntegrationTest.Controllers
         }
 
         [Fact]
-        public async Task Deve_Enviar_Email_Sem_Template_ComSucesso()
-        {
-            var model = new SendMailCommand
-            {
-                To = "danilodumba@yahoo.com.br",
-                From = "imob@qsse.com.br",
-                Body = "Mais um teste de e-mail dos bons. <h1>teste</h1>",
-                Subject = "teste de e-mail sem template",
-            };
-
-            var projeto = await this.projectService.ObterProjeto();
-            model.ProjectApiKey = projeto.ApiKey;
-            
-            var response = await this.Post(model);
-
-            Assert.True(response.IsSuccessStatusCode, await response.Content.ReadAsStringAsync());
-        }
-
-        [Fact]
         public async Task Deve_Enviar_Email_Com_Template_ComSucesso()
         {
             var model = new SendMailCommand
             {
                 To = "danilodumba@yahoo.com.br",
-                From = "imob@qsse.com.br",
-                Subject = "teste de e-mail sem template",
                 TemplateID = await CriarTemplate()
             };
 
-            model.KeyValues.Add(new KeyValueCommand { Key = "{nome}", Value = "danilo dumba" });
-            model.KeyValues.Add(new KeyValueCommand { Key = "{email}", Value = "dsdumba@gmail.com" });
-            model.KeyValues.Add(new KeyValueCommand { Key = "{teste}", Value = "Coisa boa!" });
+            model.KeyValues.Add(new KeyValuePair<string, string>("{nome}", "danilo dumba"));
+            model.KeyValues.Add(new KeyValuePair<string, string>("{email}", "dsdumba@gmail.com"));
+            model.KeyValues.Add(new KeyValuePair<string, string>("{teste}", "Coisa boa!"));
 
             var projeto = await this.projectService.ObterProjeto();
             model.ProjectApiKey = projeto.ApiKey;

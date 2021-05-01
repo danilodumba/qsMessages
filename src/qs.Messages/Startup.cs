@@ -12,6 +12,9 @@ using qsLibPack.Validations.IoC;
 using qs.Messages.Infra.Mongo.IoC;
 using qsLibPack.Middlewares;
 using System;
+using qs.Messages.Pack;
+using Rebus.ServiceProvider;
+using qs.Messages.Pack.Events;
 
 namespace qs.Messages
 {
@@ -27,6 +30,7 @@ namespace qs.Messages
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddQsMessage(Configuration);
             services.AddRepositoryMongo(Configuration);
             services.AddMail(Configuration);
             services.AddApplicationServices();
@@ -51,6 +55,11 @@ namespace qs.Messages
             }
 
             // app.UseHttpsRedirection();
+
+            app.ApplicationServices.UseRebus(c =>
+            {
+                c.Subscribe<SendMailEvent>().Wait();
+            });
 
             app.UseRouting();
 

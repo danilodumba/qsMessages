@@ -43,7 +43,6 @@ namespace qs.Messages.ApplicationServices.CommandHandlers
 
             try
             {
-                string body = request.Body;
                 var project = _projectRepository.GetByApiKey(request.ProjectApiKey);
                 if (project == null)
                 {
@@ -51,21 +50,21 @@ namespace qs.Messages.ApplicationServices.CommandHandlers
                     return Guid.Empty;
                 }
 
-                if (!string.IsNullOrWhiteSpace(request.TemplateID))
+                var template = await _templateRepository.GetByIDAsync(request.TemplateID);
+                if (template == null)
                 {
-                    var template = await _templateRepository.GetByIDAsync(request.TemplateID);
-                    if (template != null)
-                    {
-                        body = template.MailTemplate;
-
-                        foreach (var key in request.KeyValues)
-                        {
-                            body = body.Replace(key.Key, key.Value);
-                        }
-                    }
+                    _validationService.AddErrors("02", "Informe um template para o e-mail");
+                    return Guid.Empty;
                 }
 
-                var email = new Email(new EmailVO(request.To), new EmailVO(request.From), body, project, request.Subject);
+                string body = template.MailTemplate;
+
+                foreach (var key in request.KeyValues)
+                {
+                    body = body.Replace(key.Key, key.Value);
+                }
+
+                var email = new Email(new EmailVO(request.To), new EmailVO(template.MailFrom), body, project, template.Subject);
                 await _emailRepository.CreateAsync(email);
                 await _uow.CommitAsync();
 
@@ -73,7 +72,7 @@ namespace qs.Messages.ApplicationServices.CommandHandlers
             }
             catch (DomainException dx)
             {
-                _validationService.AddErrors("02", dx.Message);
+                _validationService.AddErrors("EX", dx.Message);
             }
 
             return Guid.Empty;

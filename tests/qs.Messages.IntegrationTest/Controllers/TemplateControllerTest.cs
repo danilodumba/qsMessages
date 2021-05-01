@@ -18,7 +18,7 @@ namespace qs.Messages.IntegrationTest.Controllers
             var model = TemplateModelMock.GetTemplate();
             model.ProjectID = await CriarProjeto();
             
-            var response = await this.Post("", model);
+            var response = await this.Post(model);
 
             Assert.True(response.IsSuccessStatusCode, await response.Content.ReadAsStringAsync());
         }

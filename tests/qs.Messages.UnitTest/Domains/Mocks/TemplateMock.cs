@@ -12,7 +12,9 @@ namespace qs.Messages.UnitTest.Domains.Mocks
                 p.Random.String(20),
                 p.Random.String(200),
                 p.Lorem.Text(),
-                ProjectMock.GetProject()
+                ProjectMock.GetProject(),
+                p.Random.String(10),
+                p.Person.Email
             ));
 
             return mock.Generate();

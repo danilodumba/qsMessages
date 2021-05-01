@@ -37,7 +37,7 @@ namespace qs.Messages.ApplicationServices.Services
                     return string.Empty;
                 }
 
-                var template = new Template(model.Id, model.Description, model.MailTemplate, project);
+                var template = new Template(model.Id, model.Description, model.MailTemplate, project, model.Subject, model.MailFrom);
 
                 await _templateRepository.CreateAsync(template);
                 await _uow.CommitAsync();
@@ -108,6 +108,8 @@ namespace qs.Messages.ApplicationServices.Services
                 template.SetDescription(model.Description);
                 template.SetMailTemplate(model.MailTemplate);
                 template.SetProject(project);
+                template.SetMailFrom(model.MailFrom);
+                template.SetSubject(model.Subject);
 
                 _templateRepository.Update(template);
                 _uow.Commit();
