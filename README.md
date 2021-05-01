@@ -1,5 +1,5 @@
 # O que é o qs.messages
-=====================
+=
 É um Sistema para gerenciamento de envio de mensagens, seja via e-mail ou SMS. 
 
 O projeto tem como objetivo mostrar como crio um projeto para acesso ao MongoDB com RabbitMQ e tambem funcionar como API de mensageria dos meus projetos.
